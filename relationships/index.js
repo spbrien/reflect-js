@@ -1,20 +1,20 @@
 module.exports = [
+  // {
+  //   resource: "wp_posts",
+  //   relatedTo: "wp_postmeta",
+  //   direct: true,
+  //   source_column: "ID",
+  //   target_column: "post_id"
+  // },
   {
-    resource: "wp_posts",
-    relatedTo: "wp_postmeta",
-    direct: true,
-    source_column: "ID",
-    target_column: "post_id"
-  },
-  {
-    resource: "wp_posts",
-    relatedTo: "wp_posts",
+    resource: "employees",
+    relatedTo: "departments",
     direct: false,
-    through: "wp_postmeta",
-    source_column: "ID",
-    intermediate_target_column: "post_id",
-    intermediate_source_column: "meta_id",
-    target_column: "ID",
+    through: "dept_emp",
+    source_column: "emp_no",
+    intermediate_target_column: "dept_no",
+    intermediate_source_column: "emp_no",
+    target_column: "dept_no",
     as: "wp_posts"
   },
 ]
