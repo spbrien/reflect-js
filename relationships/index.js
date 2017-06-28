@@ -1,15 +1,20 @@
-const models = []
-let relationship_config = null
-const relationships = `./${process.env.DB_NAME}`
-
-try {
-  relationship_config = require(relationships)
-}
-catch (err) {
-  console.log("No relationships defined by user...")
-}
-if (relationship_config) {
-  models = relationship_config
-}
-
-module.exports = models
+module.exports = [
+  // {
+  //   resource: "wp_posts",
+  //   relatedTo: "wp_postmeta",
+  //   direct: true,
+  //   source_column: "ID",
+  //   target_column: "post_id"
+  // },
+  // {
+  //   resource: "wp_posts",
+  //   relatedTo: "wp_posts",
+  //   direct: false,
+  //   through: "wp_postmeta",
+  //   source_column: "ID",
+  //   intermediate_target_column: "post_id",
+  //   intermediate_source_column: "meta_id",
+  //   target_column: "ID",
+  //   as: "wp_posts"
+  // },
+]
