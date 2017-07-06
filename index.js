@@ -60,7 +60,7 @@ getModels.then((results) => {
 
   // Start App
   app.set('json spaces', 40)
-  app.listen(parseInt(config.port || 9000, function () {
+  app.listen(config.port || 9000, function () {
     console.log('App listening!')
   })
 
