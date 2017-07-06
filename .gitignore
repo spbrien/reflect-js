@@ -31,7 +31,8 @@ bower_components
 .lock-wscript
 
 # Compiled binary
-dist/
+dist/*
+!dist/.gitkeep
 
 # Dependency directories
 node_modules/
