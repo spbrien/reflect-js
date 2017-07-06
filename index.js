@@ -1,10 +1,12 @@
 const dotenv = require('dotenv').config()
 const R = require('ramda')
+const md5 = require('md5')
 
 const config = require('./config')
 const getModels = require('./lib/models')()
 const queryBuilder = require('./lib/query')
 const jsonApi = require('./lib/router')
+const authApi = require('./lib/authRouter')
 const schemaApi = require('./lib/schemaRouter')
 const relationshipApi = require('./lib/relationshipRouter')
 const hooks = require('./lib/hooks')
@@ -15,6 +17,7 @@ const express = require('express')
 const app = express()
 
 console.log('Initializing...')
+app.set('secret', md5(process.env.SECRET_KEY))
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -43,11 +46,12 @@ getModels.then((results) => {
 
   // Start Auth
   // TODO: implement JWT
-  app.use(authentication.init())
+  authentication.init()
 
   // API Endpoints
   const relationshipsSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
   app.use('/api', jsonApi(models, relationshipsSchema, query))
+  app.use('/auth', authentication.authorize, authApi())
   app.use('/schema', schemaApi(results.schema))
   app.use('/relationships', relationshipApi(relationshipsSchema))
 
