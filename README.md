@@ -13,7 +13,7 @@ npm install
 ```
 
 ### Usage
-Copy `/config.template.js` to `/config.js` and fill in database details.
+Copy `/config.template.js` to `/config.js` and fill in database/config details.
 
 Fill out Authentication settings in `/auth/index.js`:
 
@@ -43,7 +43,7 @@ module.exports = {
 Run the application:
 
 ```
-node index.js
+npm run dev
 ```
 
 ---
@@ -98,6 +98,12 @@ Related resources for a complex many-to-many relationship:
 http://localhost:8080/api/<resource>/<primary key value>/<related resource>?through=<intermediate table name>
 ```
 
+Related resources can also be nested within returned objects:
+
+```
+http://localhost:8080/api/employees?includes=[{resource: departments, through: dept_emp}]
+```
+
 ### Queries / filters
 
 You can filter results using JSON in the request's query string:
@@ -142,4 +148,25 @@ Reflect-js will create join queries for the tables and return results properly:
 
 ### Authentication
 
-A real authentication implementation should be written. This project uses Passport for auth. You can modify the current (fake and embarrassing) auth implementation in `/lib/authentication.js`.
+There are three options for handling authentication:
+
+1. Create new reflect-specific tables in your connected database
+2. Create a portable sqlite database to store users and login information
+3. Disable all authentication
+
+In the config file:
+
+```
+authentication: true, // false to disable auth
+create_user_table: false, // true to create new tables, false to use sqlite
+```
+
+### Building for Production
+
+No need to worry about dependencies or installing node:
+
+```
+npm run build
+```
+
+This command will create executables in the `/dist` folder for OSX, Linux and Windows
