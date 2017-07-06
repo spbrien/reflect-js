@@ -4,7 +4,9 @@ const R = require('ramda')
 const config = require('./config')
 const getModels = require('./lib/models')()
 const queryBuilder = require('./lib/query')
-const jsonapi = require('./lib/router')
+const jsonApi = require('./lib/router')
+const schemaApi = require('./lib/schemaRouter')
+const relationshipApi = require('./lib/relationshipRouter')
 const hooks = require('./lib/hooks')
 const authentication = require('./lib/authentication')
 const userRelationships = require('./relationships')
@@ -45,46 +47,9 @@ getModels.then((results) => {
 
   // API Endpoints
   const relationshipsSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
-  app.use('/api', jsonapi(models, relationshipsSchema, query))
-
-  // Show Schema endpoints only for dev environment
-  if (process.env.ENVIRONMENT === 'dev') {
-    // Schema Endpoints
-    app.get('/schema', function(req, res, next) {
-      res
-        .set('Content-Type', 'application/json')
-        .send({ data: results.schema })
-    })
-    app.get('/schema/:resource', function(req, res, next) {
-      const resourceSchema = R.find(
-        R.propEq(
-          'name',
-          req.params.resource
-        )
-      )(results.schema)
-      res
-        .set('Content-Type', 'application/json')
-        .send(resourceSchema)
-    })
-
-    // Relationship Endpoints
-    app.get('/relationships', function(req, res, next) {
-      res
-        .set('Content-Type', 'application/json')
-        .send({ data: relationshipsSchema })
-    })
-    app.get('/relationships/:resource', function(req, res, next) {
-      const resourceSchema = R.find(
-        R.propEq(
-          'resource',
-          req.params.resource
-        )
-      )(relationshipsSchema)
-      res
-        .set('Content-Type', 'application/json')
-        .send(resourceSchema)
-    })
-  }
+  app.use('/api', jsonApi(models, relationshipsSchema, query))
+  app.use('/schema', schemaApi(results.schema))
+  app.use('/relationships', relationshipApi(relationshipsSchema))
 
   // --------------------------
   // Set up Custom Routes
