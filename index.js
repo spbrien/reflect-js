@@ -1,6 +1,8 @@
-const dotenv = require('dotenv').config()
 const R = require('ramda')
 const md5 = require('md5')
+const sqlite3 = require('sqlite3')
+const tedious = require('tedious')
+
 
 const config = require('./config')
 const getModels = require('./lib/models')()
@@ -17,7 +19,7 @@ const express = require('express')
 const app = express()
 
 console.log('Initializing...')
-app.set('secret', md5(process.env.SECRET_KEY))
+app.set('secret', md5(config.secret_key))
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -61,7 +63,7 @@ getModels.then((results) => {
 
   // Start App
   app.set('json spaces', 40)
-  app.listen(parseInt(process.env.PORT) || 9000, function () {
+  app.listen(config.port || 9000, function () {
     console.log('App listening!')
   })
 

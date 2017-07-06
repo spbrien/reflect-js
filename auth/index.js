@@ -1,6 +1,8 @@
 // Auth Configuration
+const config = require('../config')
+
 module.exports = {
-  disabled: process.env.AUTHENTICATION === 'false' ? true : false, // Disable all auth
+  disabled: config.authentication, // Disable all auth
   GET: {
     employees: {
       authorizedUsers: ['admin'],
