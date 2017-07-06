@@ -3,8 +3,8 @@ module.exports = {
   disabled: process.env.AUTHENTICATION === 'false' ? true : false, // Disable all auth
   GET: {
     employees: {
-      authorizedUsers: ['*'],
-      authorizedRoles: ['*']
+      authorizedUsers: ['admin'],
+      authorizedRoles: ['admin']
     }
   },
 }
