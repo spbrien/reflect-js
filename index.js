@@ -10,7 +10,6 @@ const relationshipApi = require('./lib/relationshipRouter')
 const hooks = require('./lib/hooks')
 const authentication = require('./lib/authentication')
 const userRelationships = require('./relationships')
-const authConfig = require('./auth')
 
 const express = require('express')
 const app = express()
@@ -43,6 +42,7 @@ getModels.then((results) => {
   // --------------------------
 
   // Start Auth
+  // TODO: implement JWT
   app.use(authentication.init())
 
   // API Endpoints
