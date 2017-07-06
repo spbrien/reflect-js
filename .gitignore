@@ -30,7 +30,7 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary 
+# Compiled binary
 build/
 
 # Dependency directories
@@ -55,5 +55,5 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# Configuration
+config.js
