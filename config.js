@@ -19,7 +19,7 @@ const config = {
     define: {
       timestamps: false // Don't define our own timestamps, rely on database
     },
-    logging: true
+    logging: false
   }
 }
 
