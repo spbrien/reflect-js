@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "pkg --output reflect --output-path build index.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "tedious": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "pkg": "^4.1.1"
   }
 }
