@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "pkg --output dist/reflect index.js"
+    "build": "pkg --targets linux,osx,win --output dist/reflect index.js"
   },
   "author": "",
   "license": "ISC",
