@@ -1,5 +1,8 @@
 const R = require('ramda')
 const md5 = require('md5')
+const sqlite3 = require('sqlite3')
+const tedious = require('tedious')
+
 
 const config = require('./config')
 const getModels = require('./lib/models')()
