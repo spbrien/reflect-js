@@ -136,8 +136,7 @@ module.exports = [
     source_column: "ID",
     intermediate_target_column: "post_id",
     intermediate_source_column: "meta_id",
-    target_column: "ID",
-    as: "wp_posts"
+    target_column: "ID"
   },
 ]
 ```
