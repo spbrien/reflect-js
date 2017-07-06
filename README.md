@@ -27,8 +27,8 @@ module.exports = {
     wp_posts: { // Specify auth settings per resource according to the database table name
       // Endpoints are restricted completely by default
       public: true, // Open Endpoint to everyone
-      // authorizedUsers: ['*'], // Open Endpoint to all authorized users
-      // authorizedUsers: ['Bob'] // Open endpoint to only Bob
+      // authorizedUsers: ['*', 'Bob'], // Open Endpoint to all authorized users and Bob
+      // authorizedRoles: ['admin'] // Open endpoint to any user with the admin role
     },
   },
   POST: {
