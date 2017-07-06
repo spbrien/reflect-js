@@ -45,7 +45,6 @@ getModels.then((results) => {
   // --------------------------
 
   // Start Auth
-  // TODO: implement JWT
   authentication.init()
 
   // API Endpoints
