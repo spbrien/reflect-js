@@ -40,8 +40,8 @@ getModels.then((results) => {
   // --------------------------
   // Set up queries
   // --------------------------
-  const relationshipsSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
-  const query = queryBuilder(models, retlationshipSchema)
+  const relationshipSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
+  const query = queryBuilder(models, relationshipSchema)
 
   // --------------------------
   // Set up API
@@ -54,7 +54,7 @@ getModels.then((results) => {
   app.use('/api', jsonApi(models, query))
   app.use('/auth', authentication.authorize, authApi())
   app.use('/schema', schemaApi(results.schema))
-  app.use('/relationships', relationshipApi(relationshipsSchema))
+  app.use('/relationships', relationshipApi(relationshipSchema))
 
   // --------------------------
   // Set up Custom Routes
