@@ -10,7 +10,6 @@ const queryBuilder = require('./lib/query')
 const jsonApi = require('./lib/router')
 const authApi = require('./lib/authRouter')
 const schemaApi = require('./lib/schemaRouter')
-const relationshipApi = require('./lib/relationshipRouter')
 const hooks = require('./lib/hooks')
 const authentication = require('./lib/authentication')
 const userRelationships = require('./relationships')
@@ -35,7 +34,7 @@ getModels.then((results) => {
   // --------------------------
   // Set up models
   // --------------------------
-  const models = results.models
+  const models = results.schema
 
   // --------------------------
   // Set up queries
@@ -50,11 +49,9 @@ getModels.then((results) => {
   authentication.init()
 
   // API Endpoints
-  const relationshipsSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
   app.use('/api', jsonApi(models, relationshipsSchema, query))
   app.use('/auth', authentication.authorize, authApi())
-  app.use('/schema', schemaApi(results.schema))
-  app.use('/relationships', relationshipApi(relationshipsSchema))
+  app.use('/schema', schemaApi(models))
 
   // --------------------------
   // Set up Custom Routes
