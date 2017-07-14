@@ -11,7 +11,7 @@ module.exports = [
     relatedTo: "Crops",
     direct: true,
     source_column: "CropID",
-    target_column: "CropId"
+    target_column: "CropID"
   },
   {
     resource: "PlotForms",
