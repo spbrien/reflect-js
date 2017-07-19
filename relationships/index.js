@@ -23,4 +23,14 @@ module.exports = [
     intermediate_source_column: "CountyID",
     target_column: "StateID",
   },
+  {
+    resource: "States",
+    relatedTo: "PlotForms",
+    direct: false,
+    through: "Counties",
+    source_column: "StateID",
+    intermediate_target_column: "CountyID",
+    intermediate_source_column: "StateID",
+    target_column: "CountyID",
+  },
 ]
