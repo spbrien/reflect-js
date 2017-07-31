@@ -62,7 +62,7 @@ getModels.then((results) => {
   // TODO: Custom routes
 
   // Start App
-  app.set('json spaces', 40)
+  app.set('json spaces', 10)
   app.listen(config.port || 9000, function () {
     console.log('App listening!')
   })
