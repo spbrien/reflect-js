@@ -35,12 +35,13 @@ getModels.then((results) => {
   // --------------------------
   // Set up models
   // --------------------------
-  const models = results.models
+  const models = results.schema
 
   // --------------------------
   // Set up queries
   // --------------------------
-  const query = queryBuilder(models)
+  const relationshipSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
+  const query = queryBuilder(models, relationshipSchema)
 
   // --------------------------
   // Set up API
@@ -50,11 +51,10 @@ getModels.then((results) => {
   authentication.init()
 
   // API Endpoints
-  const relationshipsSchema = userRelationships ? userRelationships.concat(results.relationships) : results.relationships
-  app.use('/api', jsonApi(models, relationshipsSchema, query))
+  app.use('/api', jsonApi(models, query))
   app.use('/auth', authentication.authorize, authApi())
   app.use('/schema', schemaApi(results.schema))
-  app.use('/relationships', relationshipApi(relationshipsSchema))
+  app.use('/relationships', relationshipApi(relationshipSchema))
 
   // --------------------------
   // Set up Custom Routes
@@ -62,7 +62,7 @@ getModels.then((results) => {
   // TODO: Custom routes
 
   // Start App
-  app.set('json spaces', 40)
+  app.set('json spaces', 10)
   app.listen(config.port || 9000, function () {
     console.log('App listening!')
   })
