@@ -86,19 +86,7 @@ Single resource:
 http://localhost:8080/api/<resource>/<primary key value>
 ```
 
-Related resources for a simple one-to-many or one-to-one relationship:
-
-```
-http://localhost:8080/api/<resource>/<primary key value>/<related resource>
-```
-
-Related resources for a complex many-to-many relationship:
-
-```
-http://localhost:8080/api/<resource>/<primary key value>/<related resource>?through=<intermediate table name>
-```
-
-Related resources can also be nested within returned objects:
+Related resources can be nested within returned objects:
 
 ```
 http://localhost:8080/api/employees?includes=[{resource: departments, through: dept_emp}]
@@ -108,10 +96,7 @@ http://localhost:8080/api/employees?includes=[{resource: departments, through: d
 
 You can filter results using JSON in the request's query string:
 
-`http://localhost:8080/api/<resource>?where={"ID": 4}`
-
-
-Follow the guidelines for "where" queries found [here](http://docs.sequelizejs.com/manual/tutorial/querying.html).
+`http://localhost:8080/api/<resource>?where={"ID": {"$eq": 4}}`
 
 You can also use `order` and `orderby`, `page` and `per_page` (default is 25 results per page).
 
@@ -141,9 +126,7 @@ module.exports = [
 ]
 ```
 
-Reflect-js will create join queries for the tables and return results properly:
-
-`http://localhost:8080/api/wp_posts/37/wp_posts?through=wp_postmeta&where={"post_type":"acf-field"}`
+Reflect-js will create join queries for the tables and return results properly
 
 ### Authentication
 
@@ -159,13 +142,3 @@ In the config file:
 authentication: true, // false to disable auth
 create_user_table: false, // true to create new tables, false to use sqlite
 ```
-
-### Building for Production
-
-No need to worry about dependencies or installing node:
-
-```
-npm run build
-```
-
-This command will create executables in the `/dist` folder for OSX, Linux and Windows
