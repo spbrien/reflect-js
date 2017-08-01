@@ -98,6 +98,25 @@ You can filter results using JSON in the request's query string:
 
 `http://localhost:8080/api/<resource>?where={"ID": {"$eq": 4}}`
 
+The operators for creating where queries:
+
+```
+const whereOperators = [
+  $gt,
+  $gte,
+  $lt,
+  $lte,
+  $ne,
+  $eq,
+  $between,
+  $notBetween,
+  $in,
+  $notIn,
+  $like,
+  $notLike,
+]
+```
+
 You can also use `order` and `orderby`, `page` and `per_page` (default is 25 results per page).
 
 ### User-defined Relationships
