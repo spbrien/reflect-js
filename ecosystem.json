@@ -1,0 +1,12 @@
+{
+  "apps": [{
+    "name": "yield-map-reflect",
+    "script": "server.js",
+    "watch": false,
+    "autorestart": true,
+    "error_file": "log/error.log",
+    "env": {
+      "NODE_ENV": "production",
+    }
+  }]
+}

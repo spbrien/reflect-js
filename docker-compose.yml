@@ -1,0 +1,18 @@
+version: "2"
+services:
+  node:
+    image: "node:8"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./auth:/usr/src/app/auth
+      - ./hooks:/usr/src/app/hooks
+      - ./lib:/usr/src/app/lib
+      - ./relationships:/usr/src/app/relationships
+      - ./routes:/usr/src/app/routes
+      - ./config.js:/usr/src/app/config.js
+      - ./package.json:/usr/src/app/package.json
+      - ./server.js:/usr/src/app/server.js
+    ports:
+      - "9000:9000"
+    command: /bin/sh -c "cd /usr/src/app && npm install && npm run start"
