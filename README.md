@@ -3,7 +3,7 @@
 Takes an SQL database of any dialect and turns it into a REST API.
 
 ### Requirements
-* Node 6.7.0 or greater
+* Node 8.0.0 or greater
 
 ### Installation
 ```

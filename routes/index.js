@@ -14,6 +14,29 @@ module.exports = function (models, query) {
   router.route('/custom')
     // Get all resources
     .get((req, res, next) => {
+      // Example of a custom query with the query builder
+      // Has support for rolling back transactions
+      // You have to parse the results yourself
+      // Look at the code in lib/query for more info
+
+      // ----------------------------------------------
+      // const customQuery = query.custom('PlotForms')
+      // custom.limit(2).run().then((results) => {
+      //   console.log(results)
+      // })
+      // ----------------------------------------------
+
+      // Example of a raw query
+      // Has support for rolling back transactions
+      // You have to parse the results yourself
+      // Look at the code in lib/query for more info
+
+      // ----------------------------------------------
+      // const rawQuery = query.raw("select top 1 * from PlotForms")
+      // rawQuery.run().then((results) => {
+      //   console.log(results)
+      // })
+      // ----------------------------------------------
       res.send('custom route')
     })
   return router;
