@@ -20,7 +20,7 @@ module.exports = function (models, query) {
       // Look at the code in lib/query for more info
 
       // ----------------------------------------------
-      // const customQuery = query.custom('PlotForms')
+      // const customQuery = query.custom('TableName')
       // custom.limit(2).run().then((results) => {
       //   console.log(results)
       // })
@@ -32,7 +32,7 @@ module.exports = function (models, query) {
       // Look at the code in lib/query for more info
 
       // ----------------------------------------------
-      // const rawQuery = query.raw("select top 1 * from PlotForms")
+      // const rawQuery = query.raw("select top 1 * from TableName")
       // rawQuery.run().then((results) => {
       //   console.log(results)
       // })
