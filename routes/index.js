@@ -21,9 +21,9 @@ module.exports = function (models, query) {
 
       // ----------------------------------------------
       // const customQuery = query.custom('TableName')
-      // custom.limit(2).run().then((results) => {
-      //   console.log(results)
-      // })
+      custom.limit(2).run().then((results) => {
+        console.log(results)
+      })
       // ----------------------------------------------
 
       // Example of a raw query
