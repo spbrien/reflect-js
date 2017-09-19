@@ -56,12 +56,11 @@ getModels.then((results) => {
   app.use('/auth', authentication.authorize, authApi())
   app.use('/schema', schemaApi(results.schema))
   app.use('/relationships', relationshipApi(relationshipSchema))
-  app.use('/', customRoutes(models, query))
 
   // --------------------------
   // Set up Custom Routes
   // --------------------------
-  // TODO: Custom routes
+  app.use('/', customRoutes(models, query))
 
   // Start App
   app.set('json spaces', 40)
