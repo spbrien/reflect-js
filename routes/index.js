@@ -3,6 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
+const { _debug } = require('../lib/utils')
+
 const R = require('ramda');
 
 
@@ -21,9 +23,9 @@ module.exports = function (models, query) {
 
       // ----------------------------------------------
       // const customQuery = query.custom('TableName')
-      custom.limit(2).run().then((results) => {
-        console.log(results)
-      })
+      // custom.limit(2).run().then((results) => {
+      //   _debug(results)
+      // })
       // ----------------------------------------------
 
       // Example of a raw query
@@ -34,7 +36,7 @@ module.exports = function (models, query) {
       // ----------------------------------------------
       // const rawQuery = query.raw("select top 1 * from TableName")
       // rawQuery.run().then((results) => {
-      //   console.log(results)
+      //   _debug(results)
       // })
       // ----------------------------------------------
       res.send('custom route')
