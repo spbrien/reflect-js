@@ -3,12 +3,12 @@
 Takes an SQL database of any dialect and turns it into a REST API.
 
 ### Requirements
-* Node 6.7.0 or greater
+* Node 8.0.0 or greater
 
 ### Installation
 ```
-git clone git@hlk.git.beanstalkapp.com:/hlk/hlk-devteam-utilities.git
-cd hlk-devteam-utilities/reflect-js
+git clone git@hlk.git.beanstalkapp.com:/hlk/hlk-reflect.git
+cd hlk-reflect
 npm install
 ```
 

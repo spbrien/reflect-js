@@ -18,8 +18,9 @@ const customRoutes = require('./routes')
 
 const express = require('express')
 const app = express()
+const { _debug } = require('./lib/utils')
 
-console.log('Initializing...')
+_debug('Initializing...')
 app.set('secret', md5(config.secret_key))
 
 app.use(function (req, res, next) {
@@ -56,19 +57,20 @@ getModels.then((results) => {
   app.use('/auth', authentication.authorize, authApi())
   app.use('/schema', schemaApi(results.schema))
   app.use('/relationships', relationshipApi(relationshipSchema))
-  app.use('/', customRoutes(models, query))
 
   // --------------------------
   // Set up Custom Routes
   // --------------------------
-  // TODO: Custom routes
+  app.use('/', customRoutes(models, query))
 
   // Start App
-  app.set('json spaces', 40)
+  if (process.env.NODE_ENV !== 'production') {
+    app.set('json spaces', 40)
+  }
   app.listen(config.port || 9000, function () {
-    console.log('App listening!')
+    _debug(`App listening on port ${config.port || 9000}!`)
   })
 
 }, (error) => {
-  console.log(error)
+  _debug(error)
 })

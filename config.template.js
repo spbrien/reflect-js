@@ -24,7 +24,7 @@ const config = {
     define: {
       timestamps: false // Don't define our own timestamps, rely on database
     },
-    logging: false
+    logging: process.env.NODE_ENV === 'production' ? false : console.log
   }
 }
 
