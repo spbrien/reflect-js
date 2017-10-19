@@ -64,7 +64,9 @@ getModels.then((results) => {
   app.use('/', customRoutes(models, query))
 
   // Start App
-  app.set('json spaces', 40)
+  if (process.env.NODE_ENV !== 'production') {
+    app.set('json spaces', 40)
+  }
   app.listen(config.port || 9000, function () {
     _debug(`App listening on port ${config.port || 9000}!`)
   })
