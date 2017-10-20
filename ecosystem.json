@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "yield-map-reflect",
+    "name": "reflect",
     "script": "server.js",
     "watch": false,
     "autorestart": true,
